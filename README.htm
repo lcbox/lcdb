@@ -1,0 +1,34 @@
+<table>
+    <tr><td>0        </td><td> table   </td><td> where  </td><td> limit </td><td> order </td>             </tr>
+    <tr><td>default  </td><td> table_1 </td><td> none   </td><td>  all  </td><td> next  </td>              </tr>
+    <tr><td>add      </td><td>   √     </td><td>  √     </td><td>  √    </td><td>  √    </td>               </tr>
+    <tr><td>get      </td><td>   √     </td><td>  √     </td><td>  √    </td><td>  √    </td>               </tr>
+    <tr><td>set      </td><td>   √     </td><td>  √     </td><td>  √    </td><td>  √    </td>              </tr>
+</table>
+
+
+<script>
+db.where(1,100).order("next").limit(10).get();
+
+
+//使用 filter 和 order 将影响性能
+db.get();
+db.where(1).get();
+db.where(1,100).get();
+db.where(1,100).limit(10).get();
+
+db.where("index",1,100).get();
+
+db.limit(1).get("key");                                 //主键,第一个key
+db.limit(1).order("prev").get("key");                   //主键,最后一个key
+
+db.filter((e)=>{return e*2>100}).get("key");            //所有key
+db.where("primaryKey",1,null).count(100).get("key");    //主键大于1 的
+db.where("age",null,18).order("prev").get("key");
+
+
+get();
+key();
+count();
+
+</script>
